@@ -1,0 +1,12 @@
+{
+  "name": "coursedog-recruitment-task",
+  "version": "1.0.0",
+  "description": "Coursedog recruitment task 18-06-2020",
+  "main": "index.js",
+  "repository": "https://github.com/piotrkluz/coursedog-recruitment-task",
+  "author": "Piotr Kluz",
+  "license": "MIT",
+  "dependencies": {
+    "cypress": "^4.8.0"
+  }
+}
