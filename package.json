@@ -8,5 +8,8 @@
   "license": "MIT",
   "dependencies": {
     "cypress": "^4.8.0"
+  },
+  "scripts": {
+    "test": "cypress open"
   }
 }
