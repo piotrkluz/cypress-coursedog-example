@@ -34,3 +34,16 @@ export function waitForReload(timeLimitMs = 5000) {
     // wait for fade transition end. Without it cypress report snapshots show empty pages
     cy.wait(500)
 }
+
+export function waitForLoadingSpinnerEnd(timeLimitMs = 5000) {
+    cy.get('img[alt="Loading"]', {timeout: timeLimitMs}).should("exist")
+    cy.get('img[alt="Loading"]', {timeout: timeLimitMs}).should("not.be.visible")
+    cy.wait(500)
+}
+
+/**
+ * @param {RegExp} rgx 
+ */
+export function waitForNavigation(rgx) {
+    cy.location('href').should("match", rgx)
+}
