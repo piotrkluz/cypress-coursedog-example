@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-const { todayIs, openTab, waitForReload } = require("./util")
+const { todayIs, openTab, waitForReload } = require("../support/util")
 
 context('Browse events', () => {
     beforeEach(() => {

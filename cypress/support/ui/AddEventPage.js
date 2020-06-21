@@ -1,7 +1,7 @@
-import { Form } from "../components/Form"
-import { Input, TextArea, Select, RadioGroup, MultiSelect } from "../components/FormFields"
-import { Button } from "../components/Button"
-import { waitForLoadingSpinnerEnd } from "../../util"
+import { Form } from "./components/Form"
+import { Input, TextArea, Select, RadioGroup, MultiSelect } from "./components/FormFields"
+import { Button } from "./components/Button"
+import { waitForLoadingSpinnerEnd } from "../util"
 
 export class AddEventPage {
     constructor() {

@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-const { waitForLoadingSpinnerEnd, waitForNavigation } = require("./util")
-const { AddEventPage } = require("./ui/pages/AddEventPage")
+const { waitForLoadingSpinnerEnd, waitForNavigation } = require("../support/util")
+const { AddEventPage } = require("../support/ui/AddEventPage")
 
 context('Create events', () => {
     beforeEach(() => {
