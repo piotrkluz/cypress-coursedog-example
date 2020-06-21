@@ -36,7 +36,7 @@ export function waitForReload(timeLimitMs = 5000) {
 }
 
 export function waitForLoadingSpinnerEnd(timeLimitMs = 5000) {
-    cy.get('img[alt="Loading"]', {timeout: timeLimitMs}).should("exist")
+    cy.get('img[alt="Loading"]').should("exist")
     cy.get('img[alt="Loading"]', {timeout: timeLimitMs}).should("not.be.visible")
     cy.wait(500)
 }

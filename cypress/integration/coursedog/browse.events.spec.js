@@ -107,3 +107,4 @@ context('Browse events', () => {
 // Language: Calendar is PL, others are EN
 // server side render on main page return empty featured events
 // Select by "Coursedog Team" don't show 
+// select room css artifacts
