@@ -11,6 +11,6 @@
     "cypress-xpath": "^1.6.0"
   },
   "scripts": {
-    "test": "cypress open"
+    "test": "cypress run"
   }
 }
