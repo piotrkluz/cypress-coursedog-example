@@ -4,20 +4,13 @@ const { waitForLoadingSpinnerEnd, waitForNavigation } = require("../support/util
 const { AddEventPage } = require("../support/ui/AddEventPage")
 
 context('Create events', () => {
-    beforeEach(() => {
-        cy.visit("https://damian-events.coursedog.com")
-    })
-
     it('Add new event - required fields', () => {
-        //given
         openAddEventPage()
-        cy.log("make sure at least one required field is empty")
 
-        //when
+        cy._when("make sure at least one required field is empty")
         cy.get("input[required='required']").should("be.empty")
 
-        //then
-        //submit button is disabled
+        cy._then("submit button is disabled")
         cy.get("button").contains("Submit").should("have.attr", "disabled")
     })
 
@@ -26,19 +19,15 @@ context('Create events', () => {
             .addMeeting()
             .openSelectRoom()
 
-        //when
-        //search for available rooms
-        //then
-        // i can see 4 available rooms  //soft assertion
+        cy._when("search for available rooms")
+        cy._then("I can see 4 available rooms")
         roomForm.fill({
             features: ["microphone"]
         }).searchForAvailableRooms()
             .getFoundRooms().should("have.length", 4)
 
-        // when
-        //i type "Online" into room name
-        //then
-        //there should be "Online Chat" room
+        cy._when("search room name 'Online'")
+        cy._then("'Online Chat room should be found'")
         roomForm.fill({
             roomName: "Online"
         }).searchForAvailableRooms()
@@ -50,6 +39,7 @@ context('Create events', () => {
     it('Add new event - submit form', () => {
         const page = openAddEventPage()
 
+        cy._when("Fill form")
         page.eventForm.fill({
             email: "piox89@gmail.com",
             eventName: "QA Recruitment",
@@ -62,6 +52,7 @@ context('Create events', () => {
             notes: "nothing special"
         })
 
+        cy._and("Add meeting")
         page.addMeeting()
             .fill({
                 startDate: "2020-06-21",
@@ -78,12 +69,13 @@ context('Create events', () => {
 
         page.submitBtn.click()
 
-        //then 
+        cy._then("Success message should appear")
         cy.contains("We have sent confirmation to the email you provided.", { timeout: 10000 })
     })
 })
 
 function openAddEventPage() {
+    cy.visit("https://damian-events.coursedog.com")
     cy.get("#requestEventTypeSelect").select("Public Events")
     waitForNavigation(/events\/request\/.*/, 10000)
     waitForLoadingSpinnerEnd(10000)

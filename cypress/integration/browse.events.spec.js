@@ -38,58 +38,51 @@ context('Browse events', () => {
         cy.contains("QA Task Submission").click()
         waitForReload()
 
-        //then
+        cy._then("Verify event details")
         cy.get("article button").contains("Add to calendar").should("be.visible")
         cy.get("article button").contains("Add to Google Calendar").should("be.visible")
         cy.get('article svg[data-icon="map-marker-alt"]').next().should("not.be.empty") //Address
         cy.get("label").contains("Event Type").next().should("not.be.empty")
         cy.get("label").contains("Organized by").next().should("not.be.empty")
 
-        // I can see other meetings that will take place as part of that event.
+        cy._then("I can see other meetings that will take place as part of that event.")
         cy.get("aside > div[aria-label^='Event card for']")
             .should("have.length.greaterThan", 0)        
     })
 
     it('Search for events', () => {
-        // type "Finale in search box"
+        cy._when('type "Finale in search box"')
         cy.get("form[role=search] > input").type("Finale{enter}")
 
-        //then
-        // expect 1 matching event
+        cy._then('expect 1 matching event')
         cy.get("#search-results a[aria-label^='Event name']")
             .should("have.length", 1)
             .should("contain.text", "QA Recruitment Finale")
     })
 
     it('Fiter by organization', () => {
-        //when
-        // Select organization "Coursedog Team"
+        cy._when('Select organization "Coursedog Team"')
         todayIs("2020-06-18")
         cy.get("#orgSelect").select("Coursedog Team")
         waitForReload()
 
-        //then
-        cy.get("#search-results a[aria-label^='Event name']").should("have.length", 5) // there should be 5 events in result
+        cy._then('there should be 5 events in result')
+        cy.get("#search-results a[aria-label^='Event name']").should("have.length", 5)
+
+        cy._and('all should have "Coursedog Team Organization"')
         cy.get("#search-results").contains("Organized by").each((el, i, list) => {
-            expect(el.next().text()).contain("Coursedog Team") // and all should have "Coursedog Team Organization"
+            expect(el.next().text()).contain("Coursedog Team")
         })
     })
 
     it('pick date from calendar', () => {
-        // pick 18 
+        cy._when("Pick '18' from calendar")
         cy.get(".vc-w-full .vc-day-content").contains(/^18$/) // todo trivial solution, works only for current month
             .click()
         waitForReload()
 
+        cy._then("see that 1 found event")
+        cy._and("and event date is 18")
         cy.get("div[role=group] .card").should("have.length", 1)
-        // see that 1 found event
-        // and event date is 18
     })
 })
-
-//BUGS: 
-// Language: Calendar is PL, others are EN
-// server side render on main page return empty featured events
-// Select by "Coursedog Team" don't show 
-// select room css artifacts
-// Required fields wrong email information should appear

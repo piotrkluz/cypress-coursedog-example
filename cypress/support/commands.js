@@ -23,3 +23,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("_given", (text) => { cy.log('--- GIVEN ' + text) })
+Cypress.Commands.add("_when", (text) => { cy.log('--- WHEN ' + text) })
+Cypress.Commands.add("_then", (text) => { cy.log('--- THEN ' + text) })
+Cypress.Commands.add("_and", (text) => { cy.log('--- AND ' + text) })
+Cypress.Commands.add("_but", (text) => { cy.log('--- BUT ' + text) })
