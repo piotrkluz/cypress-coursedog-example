@@ -2,7 +2,7 @@
 * Base class for all components. 
 * Store information about root element of component.
 */
-class Component {
+export class Component {
     /**
      * @param {function that return cypress context} base 
      * @example

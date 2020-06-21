@@ -1,4 +1,8 @@
-class SelectRoomForm extends Form {
+import { Input, MultiSelect } from "../components/FormFields"
+import { Form } from "../components/Form"
+import { waitForLoadingSpinnerEnd } from "../../util"
+
+export class SelectRoomForm extends Form {
     constructor(base) {
         super(base)
         this.roomName = new Input("Room name", base)

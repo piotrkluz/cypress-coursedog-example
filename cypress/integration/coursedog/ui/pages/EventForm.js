@@ -1,5 +1,7 @@
+import { Form } from "../components/Form"
+import { Input, TextArea, Select, RadioGroup } from "../components/FormFields"
 
-class EventForm extends Form {
+export class EventForm extends Form {
     constructor() {
         this.email = new Input("Email Address")
         this.eventName = new Input("Event Name")

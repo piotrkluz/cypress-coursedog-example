@@ -1,4 +1,5 @@
-
+import { MeetingForm } from "./MeetingForm"
+import { EventForm } from "./EventForm"
 
 export class AddEventPage {
     eventForm = new EventForm()
@@ -17,6 +18,6 @@ export class AddEventPage {
 
     submit() {
         cy.contains("Submit").click()
-        cy.contains("Already sent").should("be.visible")
+        cy.contains("We have sent confirmation to the email you provided.", {timeout: 10000})
     }
 }

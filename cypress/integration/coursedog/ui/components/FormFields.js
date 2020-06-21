@@ -1,3 +1,4 @@
+import { Component } from "./Component"
 
 /**
  * Common class to form fields identified by label.
