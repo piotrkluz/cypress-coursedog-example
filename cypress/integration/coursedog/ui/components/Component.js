@@ -14,6 +14,7 @@ export class Component {
 
     /**
      * Perform base component search and returns cypress context of it. 
+     * @returns {Chainable<JQuery<HtmlElement>>}
      * @example 
      * myComponent.getBase().get("li")...
      */

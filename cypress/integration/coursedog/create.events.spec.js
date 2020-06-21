@@ -21,21 +21,29 @@ context('Create events', () => {
         cy.get("button").contains("Submit").should("have.attr", "disabled")
     })
 
-    it.only('Add new event - search room', () => {
-
+    it('should be able to search rooms', () => {
+        const roomForm = openAddEventPage()
+            .addMeeting()
+            .openSelectRoom()
 
         //when
         //search for available rooms
-
         //then
         // i can see 4 available rooms  //soft assertion
+        roomForm.fill({
+            features: ["microphone"]
+        }).searchForAvailableRooms()
+            .getFoundRooms().should("have.length", 4)
 
         // when
         //i type "Online" into room name
-
         //then
-        //all found rooms should have 'online'
         //there should be "Online Chat" room
+        roomForm.fill({
+            roomName: "Online"
+        }).searchForAvailableRooms()
+            .getFoundRooms().should("have.length", 1)
+            .should("contain.text", "Online Chat")
     })
 
 
@@ -68,14 +76,17 @@ context('Create events', () => {
             .searchForAvailableRooms()
             .chooseRoom("Online Chat")
 
-        page.submit()
+        page.submitBtn.click()
+
+        //then 
+        cy.contains("We have sent confirmation to the email you provided.", { timeout: 10000 })
     })
 })
 
 function openAddEventPage() {
     cy.get("#requestEventTypeSelect").select("Public Events")
-    waitForNavigation(/events\/request\/.*/)
-    waitForLoadingSpinnerEnd()
+    waitForNavigation(/events\/request\/.*/, 10000)
+    waitForLoadingSpinnerEnd(10000)
 
     return new AddEventPage()
 }
