@@ -1,5 +1,3 @@
-const moment = require('moment')
-
 /**
  * @param {string} date
  * @example todayIs("2020-01-01") 
